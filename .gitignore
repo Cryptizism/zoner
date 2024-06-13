@@ -1,0 +1,5 @@
+.robo
+.vscode
+node_modules
+*.db
+.env

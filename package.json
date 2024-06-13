@@ -1,0 +1,44 @@
+{
+	"name": "timezone-checker",
+	"description": "",
+	"version": "1.0.0",
+	"type": "module",
+	"private": true,
+	"keywords": [
+		"bot",
+		"discord",
+		"discord.js",
+		"robo",
+		"robo.js",
+		"typescript"
+	],
+	"scripts": {
+		"build": "robo build",
+		"deploy": "robo deploy",
+		"dev": "robox dev",
+		"doctor": "sage doctor",
+		"invite": "robo invite",
+		"lint": "npm run lint:eslint && npm run lint:style",
+		"lint:eslint": "eslint -c config/eslint.mjs .",
+		"lint:style": "prettier --write .",
+		"start": "robo start",
+		"upgrade": "sage upgrade"
+	},
+	"dependencies": {
+		"@types/sqlite3": "^3.1.11",
+		"countries-and-timezones": "^3.6.0",
+		"discord.js": "^14.15.3",
+		"robo.js": "^0.10.9",
+		"sqlite3": "^5.1.7"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.4.0",
+		"@swc/core": "^1.5.29-nightly-20240612.2",
+		"@types/node": "^20.14.2",
+		"eslint": "^9.4.0",
+		"globals": "^15.4.0",
+		"prettier": "^3.3.2",
+		"typescript": "^5.4.5",
+		"typescript-eslint": "^7.13.0"
+	}
+}

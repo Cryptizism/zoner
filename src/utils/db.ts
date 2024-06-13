@@ -14,6 +14,18 @@ export const getUser = (user: string, submitter: string): Promise<any> => {
     });
 };
 
+export const getSpecificSubmitter = (user: string, submitter: string): Promise<any> => {
+    return new Promise((resolve, reject) => {
+        db.get(`SELECT * FROM timezones WHERE user = ? AND submitter = ?`, [user, submitter], (err, row) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(row);
+            }
+        });
+    });
+}
+
 export const getOwnTimezone = (user: string): Promise<any> => {
     return new Promise((resolve, reject) => {
         db.get(`SELECT * FROM timezones WHERE user = ? AND submitter = ?`, [user, user], (err, row) => {
@@ -51,8 +63,8 @@ export const updateTimezone = (user: string, submitter: string, timezone: string
 };
 
 export const insertOrUpdateIfExist = async (submitter: string, user: string, timezone: string): Promise<void> => {
-    const existingUser = await getUser(user, submitter);
-    if (existingUser.length > 0) {
+    const existingUser = await getSpecificSubmitter(user, submitter);
+    if (existingUser !== undefined) {
         try {
             await updateTimezone(user, submitter, timezone);
         } catch (error) {

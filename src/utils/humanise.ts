@@ -19,11 +19,11 @@ export const compareTimezones = (timezone1Name: string, timezone2Name: string): 
     // Determine if timezone1 is ahead or behind timezone2
     let differenceString;
     if (timeDifference > 0) {
-        differenceString = `ahead of \`${timezone2Name}\` by \`${timeDifference} hours\``;
+        differenceString = `ahead of \`${timezone1Name}\` by \`${timeDifference} hours\``;
     } else if (timeDifference < 0) {
-        differenceString = `behind \`${timezone2Name}\` by \`${Math.abs(timeDifference)} hours\``;
+        differenceString = `behind \`${timezone1Name}\` by \`${Math.abs(timeDifference)} hours\``;
     } else {
-        differenceString = `in the same time as \`${timezone2Name}\``;
+        differenceString = `in the same time as \`${timezone1Name}\``;
     }
 
     return differenceString;

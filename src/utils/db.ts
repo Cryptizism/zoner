@@ -38,9 +38,9 @@ export const insertUser = (user: string, submitter: string, timezone: string): P
     });
 };
 
-export const updateTimezone = (user: string, timezone: string): Promise<void> => {
+export const updateTimezone = (user: string, submitter: string, timezone: string): Promise<void> => {
     return new Promise<void>((resolve, reject) => {
-        db.run(`UPDATE timezones SET timezone = ? WHERE user = ?`, [timezone, user], (err) => {
+        db.run(`UPDATE timezones SET timezone = ? WHERE user = ? AND submitter = ?`, [timezone, user, submitter], (err) => {
             if (err) {
                 reject(err);
             } else {
@@ -54,7 +54,7 @@ export const insertOrUpdateIfExist = async (submitter: string, user: string, tim
     const existingUser = await getUser(user, submitter);
     if (existingUser.length > 0) {
         try {
-            await updateTimezone(user, timezone);
+            await updateTimezone(user, submitter, timezone);
         } catch (error) {
             console.error('Error updating timezone:', error);
         }

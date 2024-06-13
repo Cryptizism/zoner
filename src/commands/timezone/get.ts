@@ -78,7 +78,7 @@ export default async (interaction: ChatInputCommandInteraction): Promise<Command
   if(own !== undefined){
     embed.addFields({
       name: "Comparison",
-      value: `They are ${compareTimezones(info[0].timezone, own.timezone)}`,
+      value: `You are ${compareTimezones(info[0].timezone, own.timezone)}`,
       inline: false,
     });
   } else {

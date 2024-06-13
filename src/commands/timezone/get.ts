@@ -2,6 +2,7 @@ import type { CommandConfig, CommandOptions, CommandResult } from 'robo.js'
 import { type CommandInteraction, type AutocompleteInteraction, type ChatInputCommandInteraction, EmbedBuilder } from 'discord.js'
 import { getOwnTimezone, getUser } from '../../utils/db';
 import { compareTimezones } from '../../utils/humanise';
+import moment from 'moment-timezone';
 
 export const config: CommandConfig = {
   description: 'Gets the timezones of user(s)',
@@ -40,7 +41,7 @@ export default async (interaction: ChatInputCommandInteraction): Promise<Command
     interaction.reply({content: "⚠ No timezone found for that user.", ephemeral: true});
     return;
   } else if (info.length > 1){
-    message.push("⚠ You and the target user have set their timezone. Update if appropriate.");
+    message.push("⚠ You and the target user have set their timezone as different ones. Update if appropriate.");
   }
 
   // create an embed with the timezone information, also fetch the user's timezone and make a comparison
@@ -78,7 +79,7 @@ export default async (interaction: ChatInputCommandInteraction): Promise<Command
   if(own !== undefined){
     embed.addFields({
       name: "Comparison",
-      value: `You are ${compareTimezones(info[0].timezone, own.timezone)}`,
+      value: `You are ${compareTimezones(info[0].timezone, own.timezone)}\nIt is currently \`${moment().tz(info[0].timezone).format('LLL')}\``,
       inline: false,
     });
   } else {

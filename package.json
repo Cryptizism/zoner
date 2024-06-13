@@ -28,6 +28,7 @@
 		"@types/sqlite3": "^3.1.11",
 		"countries-and-timezones": "^3.6.0",
 		"discord.js": "^14.15.3",
+		"moment-timezone": "^0.5.45",
 		"robo.js": "^0.10.9",
 		"sqlite3": "^5.1.7"
 	},
